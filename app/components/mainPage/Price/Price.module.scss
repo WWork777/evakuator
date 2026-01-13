@@ -1,0 +1,155 @@
+.sliderViewport {
+  overflow: hidden;
+}
+
+.mySwiper{
+    overflow: visible;
+    padding-left: calc((100% - min(100%, 1520px)) / 2);
+    min-height: 600px;
+
+    @media (max-width:1530px) {
+        padding-left: calc((100% - min(100%, 1500px)) / 2 + 2.5%); 
+    }
+
+    
+}
+
+.mySwiper :global(.swiper-pagination-bullet) {
+    border-radius: 20px;
+    width: 100px;
+    height: 3px;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.mySwiper :global(.swiper-pagination-bullet-active) {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+.prices_card{
+    width: 325px;
+    min-height: 500px; 
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    &::before {
+        content: "";
+        width: 365px;
+        border-radius: 20px;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50.1%, rgba(0, 0, 0, 0.7) 100%);
+        z-index: 1;
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+
+    &::after {
+        width: 365px;
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        background: linear-gradient(180deg,rgba(0, 0, 0, 0.0) 40.1%,rgba(0, 0, 0, 0.9) 100%);
+
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 1;
+    }
+
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    .text_block{
+        margin-top: auto;
+        color: #ffffff;
+
+        p{
+            font-size: 14px;
+        }
+    }
+
+    .bottomRow{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        p{
+            color: #ffffff;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .CTA_button{
+            height: 40px;
+            width: 140px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            background: #FFFFFF;
+            color: var(--button-color);
+            text-decoration: none;
+            transition: all 0.4s ease;
+
+            .button_text{
+                font-size: 16px;
+                line-height: 1;
+                white-space: nowrap;
+                transition: transform 0.4s ease;
+            }
+
+            .button_icon{
+                width: 33px;
+                height: 33px;
+                border-radius: 50%;
+                background: var(--decor-color);
+                display: grid;
+                place-items: center;
+                flex-shrink: 0;
+                transition: transform 0.4s ease;
+            }
+
+            .button_arrow{
+                width: 22px;
+                height: 22px;
+                transform: rotate(-45deg);
+                transition: transform 0.4s ease;
+            }
+
+            &:active {
+                transform: translateY(1px);
+            }
+        }
+    }
+
+    &:hover {
+        &::before {opacity: 0;}
+        &::after {opacity: 1;}
+        .bottomRow .CTA_button{
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 24px rgba(255, 255, 255, 0.4);
+            .button_icon {
+                transform: translateX(calc(140px - 37px));
+            }
+
+            .button_text {
+                transform: translateX(-40px);
+            }
+
+            .button_arrow {
+                transform: rotate(0deg);
+            }
+        }
+    }
+}

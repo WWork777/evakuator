@@ -1,0 +1,114 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.item {
+  width: 100%;
+  aspect-ratio: 1 / 1; // аккуратные пропорции
+  border-radius: 20px;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* fade-in */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* разные задержки по-порядку*/
+.item:nth-child(1) { animation-delay: 0.25s; }
+.item:nth-child(2) { animation-delay: 0.05s; }
+.item:nth-child(3) { animation-delay: 0.45s; }
+.item:nth-child(4) { animation-delay: 0.15s; }
+.item:nth-child(5) { animation-delay: 0.6s; }
+.item:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* адаптив */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bottom_gallery{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.CTA_button{
+    height: 50px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 3px 7px;
+    border: 2px solid var(--button-color);
+    border-radius: 999px;
+    background: #FFFFFF;
+    color: var(--button-color);
+    text-decoration: none;
+    transition: background 0.4s ease;
+
+    .button_text{
+        font-size: 16px;
+        line-height: 1;
+        white-space: nowrap;
+        transition: transform 0.4s ease;
+    }
+
+    .button_icon{
+        width: 47px;
+        height: 47px;
+        border-radius: 50%;
+        background: var(--button-color);
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        transition: transform 0.4s ease;
+    }
+
+    .button_arrow{
+        width: 29px;
+        height: 29px;
+        color: #111;
+        transform: rotate(-45deg);
+        transition: transform 0.4s ease;
+    }
+
+    &:hover {
+        .button_icon {
+            transform: translateX(calc(200px - 47px));
+        }
+
+        .button_text {
+            transform: translateX(-60px);
+        }
+
+        .button_arrow {
+            transform: rotate(0deg);
+        }
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
