@@ -4,6 +4,7 @@ import './globals.scss';
 
 import Header from './components/layout/Header/Header';
 import Footer from './components/layout/Footer/Footer';
+import YandexMetrika from './components/YandexMetrika';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -102,6 +103,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <YandexMetrika />
       </body>
     </html>
   );

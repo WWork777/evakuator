@@ -15,7 +15,8 @@ export async function POST(request: NextRequest) {
 
     // Получаем токен бота и chat_id из переменных окружения
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
+    const chatId = process.env.TELEGRAM_CHAT_ID; // Основной чат
+    const chatId2 = process.env.TELEGRAM_CHAT_ID_2; // Дополнительный чат для дублирования
 
     if (!botToken || !chatId) {
       console.error('TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID не настроены');
@@ -63,27 +64,49 @@ export async function POST(request: NextRequest) {
     message += `\n\n💰 *Стоимость:* ${price.toLocaleString('ru-RU')} ₽`;
     message = message.trim();
 
-    // Отправляем сообщение в Telegram
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    const response = await fetch(telegramUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'Markdown',
-      }),
-    });
+    // Функция для отправки сообщения в Telegram
+    const sendToTelegram = async (targetChatId: string) => {
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+      const response = await fetch(telegramUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: targetChatId,
+          text: message,
+          parse_mode: 'Markdown',
+        }),
+      });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Ошибка отправки в Telegram:', errorData);
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error(`Ошибка отправки в Telegram чат ${targetChatId}:`, errorData);
+        throw new Error(`Не удалось отправить в чат ${targetChatId}`);
+      }
+
+      return response.json();
+    };
+
+    // Отправляем в основной чат (обязательно)
+    try {
+      await sendToTelegram(chatId);
+    } catch (error) {
+      console.error('Ошибка отправки в основной чат:', error);
       return NextResponse.json(
         { error: 'Не удалось отправить заявку' },
         { status: 500 }
       );
+    }
+
+    // Отправляем в дополнительный чат для дублирования (если указан)
+    if (chatId2) {
+      try {
+        await sendToTelegram(chatId2);
+      } catch (error) {
+        // Не критично, если не удалось отправить в дополнительный чат
+        console.warn('Не удалось отправить в дополнительный чат:', error);
+      }
     }
 
     return NextResponse.json({ success: true, message: 'Заявка успешно отправлена' });
