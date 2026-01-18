@@ -5,12 +5,14 @@ export default function Hero() {
   return (
     <section id='hero' className={styles.hero}>
       <div className={styles.hero_container}>
-        <h1>Эвакуатор в Кемерово</h1>
-        <div className={styles.line} />
-        <p>
-          Круглосуточные услуги эвакуации автомобилей быстро и недорого <br />{' '}
-          Приедем в течение 20 мин
-        </p>
+        <div className={styles.text_content}>
+          <h1>Эвакуатор в Кемерово</h1>
+          <div className={styles.line} />
+          <p>
+            Круглосуточные услуги эвакуации автомобилей быстро и недорого <br />{' '}
+            Приедем в течение 20 мин
+          </p>
+        </div>
         <a className={styles.CTA_button} href='tel:+79234807070'>
           <span className={styles.button_icon} aria-hidden='true'>
             <Image

@@ -2,14 +2,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Gallery.module.scss';
 
-const images = [
-  '/images/Gallery/1.png',
-  '/images/Gallery/2.png',
-  '/images/Gallery/3.png',
-  '/images/Gallery/4.png',
-  '/images/Gallery/5.png',
-  '/images/Gallery/6.png',
+const allImages = [
+  '/images/Gallery/1.webp',
+  '/images/Gallery/2.webp',
+  '/images/Gallery/3.webp',
+  '/images/Gallery/4.webp',
+  '/images/Gallery/5.webp',
+  '/images/Gallery/6.webp',
+  '/images/Gallery/7.webp',
+  '/images/Gallery/8.webp',
+  '/images/Gallery/9.webp',
+  '/images/Gallery/10.webp',
+  '/images/Gallery/11.webp',
+  '/images/Gallery/12.webp',
+  '/images/Gallery/13.webp',
+  '/images/Gallery/14.webp',
+  '/images/Gallery/15.webp',
+  '/images/Gallery/16.webp',
+  '/images/Gallery/17.webp',
+  '/images/Gallery/18.webp',
+  '/images/Gallery/19.webp',
 ];
+
+// На лендинге показываем только первые 6 фотографий
+const images = allImages.slice(0, 6);
 
 export default function Gallery() {
   return (

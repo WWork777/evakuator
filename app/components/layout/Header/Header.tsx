@@ -6,7 +6,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import styles from './Header.module.scss';
 
 export default function Header() {
-  const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
+  const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE || '+7(923)480-70-70';
+  const address = 'г.Кемерово, пр-кт Кузнецкий, 83/2';
   const pathname = usePathname();
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
@@ -91,9 +92,14 @@ export default function Header() {
       {/* Остальной код без изменений */}
       <div>
         <div className={styles.inner}>
-          {/* <Link href='/' className={styles.logo}>
-            <Image src='/images/logo.png' alt='Логотип' width={80} height={80} priority />
-          </Link> */}
+          {/* Логотип с текстом - виден на мобильных */}
+          <Link href='/' className={styles.mobile_logo_header}>
+            {/* <Image src='/images/logo.png' alt='Логотип' width={50} height={50} priority /> */}
+            <div className={styles.mobile_logo_text}>
+              <p>Эвакуатор</p>
+              <p>в Кемерово</p>
+            </div>
+          </Link>
 
           {/* Навигация desktop */}
           <div className={styles.right_side}>
@@ -169,6 +175,31 @@ export default function Header() {
             </div>
           </div>
 
+          {/* Мобильные социальные сети - по центру */}
+          <div className={styles.mobile_socials}>
+            <a
+              href='https://t.me/+yicmz5BqXSM4MzRi'
+              target='_blank'
+              rel='noopener noreferrer'
+              className={styles.mobile_social_icon}
+            >
+              <Image
+                src='/icons/tg.svg'
+                alt='Telegram'
+                width={28}
+                height={28}
+              />
+            </a>
+            <div className={styles.mobile_social_icon}>
+              <Image
+                src='/icons/max.svg'
+                alt='MAX'
+                width={28}
+                height={28}
+              />
+            </div>
+          </div>
+
           <button
             className={styles.burger}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -241,9 +272,12 @@ export default function Header() {
             </Link>
           </nav>
           <div className={styles.mobileContacts}>
-            <Link href={`tel:${phone}`}>
+            <Link href={`tel:${phone}`} className={styles.mobilePhone}>
               <span>{phone}</span>
             </Link>
+            <div className={styles.mobileAddress}>
+              <span>{address}</span>
+            </div>
             <div className={styles.socials}>
               <a
                 href='https://t.me/+yicmz5BqXSM4MzRi'

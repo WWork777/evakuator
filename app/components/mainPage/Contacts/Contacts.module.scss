@@ -76,7 +76,7 @@
   }
 
   @media (min-width: 769px) {
-    height: 500px;
+    height: 650px;
     border-radius: 35px !important;
   }
 }
@@ -124,16 +124,15 @@
     transform: translateY(-50%);
     width: 600px;
     height: auto;
-    max-height: 400px;
     padding: 25px;
     border-radius: 35px;
     margin-top: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   @media (min-width: 769px) and (max-width: 1440px) {
     width: 550px;
     height: auto;
-    max-height: 400px;
     padding: 22px;
     top: 50%;
     transform: translateY(-50%);
@@ -142,7 +141,6 @@
   @media (min-width: 769px) and (max-width: 1366px) {
     width: 500px;
     height: auto;
-    max-height: 380px;
     padding: 20px;
     top: 50%;
     transform: translateY(-50%);
@@ -151,7 +149,6 @@
   @media (min-width: 769px) and (max-width: 1200px) {
     width: 480px;
     height: auto;
-    max-height: 360px;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -218,4 +215,108 @@
 .mobile_note small {
   font-size: 12px;
   line-height: 1.4;
+}
+
+.address_section {
+  margin-bottom: 15px;
+
+  @media (min-width: 769px) {
+    margin-bottom: 20px;
+  }
+}
+
+.address_main {
+  font-weight: 500;
+  color: #333;
+  line-height: 1.5;
+  margin: 8px 10px !important;
+
+  @media (max-width: 768px) {
+    margin: 6px 8px !important;
+  }
+}
+
+.branches_section {
+  margin-bottom: 15px;
+
+  @media (min-width: 769px) {
+    margin-bottom: 20px;
+  }
+}
+
+.branches_list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    margin: 6px 8px 0 8px;
+    gap: 8px;
+  }
+
+  @media (min-width: 769px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+    margin: 8px 10px 0 10px;
+  }
+}
+
+.branch_item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 6px 0;
+    gap: 3px;
+  }
+
+  @media (min-width: 769px) {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    // Убираем границу у последних двух элементов (3-й и 4-й) в двухколоночной сетке
+    &:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+  }
+}
+
+.branch_address {
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+  font-size: 17px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+.branch_district {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.4;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
 }

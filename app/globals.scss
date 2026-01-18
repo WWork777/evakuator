@@ -49,6 +49,7 @@ select {
 }
 
 h1 {
+  color: var(--text-color); // Явно указываем цвет для iOS Safari
   font-weight: 600;
   font-style: SemiBold;
   font-size: 74px;
@@ -114,6 +115,7 @@ h2 {
 }
 
 h3 {
+  color: var(--text-color); // Явно указываем цвет для iOS Safari
   font-weight: 500;
   margin: 0;
   font-style: Medium;
@@ -131,6 +133,7 @@ h3 {
 }
 
 h4 {
+  color: var(--text-color); // Явно указываем цвет для iOS Safari
   margin: 0;
   font-family: Montserrat;
   font-weight: 500;

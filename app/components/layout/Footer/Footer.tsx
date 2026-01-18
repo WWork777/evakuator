@@ -7,8 +7,8 @@ import { usePathname, useRouter } from 'next/navigation';
 export default function Footer() {
   const email = 'evak-kemerovo@yandex.ru';
   const phone = '+7(923)480-70-70';
-  const address = 'г.Кемерово, пр-кт Кузнецкий, 83, с. №2';
-  const addressLink = 'г.Кемерово, пр-кт Кузнецкий, 83, с. №2';
+  const address = 'г.Кемерово, пр-кт Кузнецкий, 83/2';
+  const addressLink = 'г.Кемерово, пр-кт Кузнецкий, 83/2';
   const pathname = usePathname();
   const router = useRouter();
 
